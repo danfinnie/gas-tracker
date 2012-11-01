@@ -16,7 +16,8 @@ class LogRecordController extends Controller
           return array(
              "id" => $o->getId(),
              "mileage" => $o->getMileage(),
-             "gallonsAdded" => $o->getGallonsAdded()
+             "gallonsAdded" => $o->getGallonsAdded(),
+             "car" => $o->getCar()->getName(),
           );
         }, $records);
 
@@ -32,6 +33,11 @@ class LogRecordController extends Controller
         $form = $this->createFormBuilder($logRecord)
             ->add('mileage', 'text')
             ->add('gallonsAdded', 'text')
+            ->add('car', 'entity', array(
+                'class' => 'DanFinnieGasBundle:Car',
+                'property' => 'name',
+                'multiple' => false,
+            ))
             ->getForm();
 
         if ($req->isMethod('POST')) {

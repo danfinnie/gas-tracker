@@ -3,11 +3,12 @@
 <tr>
 <td>Mileage</td>
 <td>Gallons Added</td>
+<td>Car</td>
 </tr>
 </thead>
 <tbody>
 {% for rec in log_records %}
-   <tr><td>{{ rec.mileage }}</td><td>{{ rec.gallonsAdded }}</td></tr>
+   <tr><td>{{ rec.mileage }}</td><td>{{ rec.gallonsAdded }}</td><td>{{ rec.car }}</tr>
 {% endfor %}
 </tbody>
 </table>
