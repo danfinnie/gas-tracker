@@ -105,4 +105,23 @@ class Car
     {
         return $this->logRecords;
     }
+
+    public function getMpg()
+    {
+        $milesDriven = 0;
+        $gallonsAdded = 0;
+
+        for($i = 0; $i < count($this->logRecords)-1; $i++) {
+            $earlyRecord = $this->logRecords[$i];
+            $laterRecord = $this->logRecords[$i+1];
+
+            $milesDriven += $laterRecord->getMileage() - $earlyRecord->getMileage();
+            $gallonsAdded += $earlyRecord->getGallonsAdded();
+        }
+
+        if ($gallonsAdded == 0)
+            return 0;
+        else
+            return $milesDriven * 1.0 / $gallonsAdded;
+    }
 }

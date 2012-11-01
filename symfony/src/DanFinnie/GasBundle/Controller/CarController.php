@@ -23,7 +23,14 @@ class CarController extends Controller
 
     public function detailsAction($id)
     {
-        echo($id);
-    }
+        $carRepo = $this->getDoctrine()->getRepository('DanFinnieGasBundle:Car');
+        $car = $carRepo->findOneById($id);
 
+        return $this->render('DanFinnieGasBundle:Car:details.html.twig', array(
+            'car' => array(
+                'name' => $car->getName(),
+                'mpg' => $car->getMpg(),
+            ),
+        ));
+    }
 }
