@@ -5,3 +5,5 @@
 /symfony/app/logs/*
 /symfony/vendor/
 /symfony/app/config/parameters.yml
+.*.swp
+*~
