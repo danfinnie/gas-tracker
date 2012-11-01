@@ -21,46 +21,9 @@ class CarController extends Controller
         return $this->render('DanFinnieGasBundle:Car:index.html.twig', array('cars' => $carsArr));
     }
 
-    public function addAction(Request $req)
+    public function detailsAction($id)
     {
-        $logRecord = new LogRecord();
-        $logRecord->setMileage($this->getExpectedMileage());
-        $logRecord->setGallonsAdded($this->getExpectedGallonsAdded());
-
-        $form = $this->createFormBuilder($logRecord)
-            ->add('mileage', 'text')
-            ->add('gallonsAdded', 'text')
-            ->add('car', 'entity', array(
-                'class' => 'DanFinnieGasBundle:Car',
-                'property' => 'name',
-                'multiple' => false,
-            ))
-            ->getForm();
-
-        if ($req->isMethod('POST')) {
-            $form->bind($req);
-
-            if ($form->isValid()) {
-               $manager = $this->getDoctrine()->getManager();
-               $manager->persist($form->getData());
-               $manager->flush();
-
-               return $this->redirect($this->generateUrl('dan_finnie_gas_homepage'));
-            }
-        } else {
-           return $this->render('DanFinnieGasBundle:LogRecord:add.html.twig', array('form' => $form->createView()));
-        }
+        echo($id);
     }
 
-    private function getExpectedMileage()
-    {
-        // TODO: Return expected next value based on max mileage and average mileage between fillups.
-        return 100000;
-    }
-
-    private function getExpectedGallonsAdded()
-    {
-        // TODO: Return expected gallons added.
-        return 10;
-    }
 }

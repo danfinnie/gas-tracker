@@ -9,3 +9,9 @@ dan_finnie_gas_add:
 dan_finnie_car_homepage:
     pattern: /car
     defaults: { _controller: DanFinnieGasBundle:Car:index }
+
+dan_finnie_car_details:
+    pattern: /car/{id}
+    defaults: { _controller: DanFinnieGasBundle:Car:details }
+    requirements:
+        id: \d+
