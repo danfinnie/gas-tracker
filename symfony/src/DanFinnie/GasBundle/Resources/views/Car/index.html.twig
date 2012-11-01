@@ -1,0 +1,6 @@
+<h1>Your Cars</h1>
+<ul>
+{% for car in cars %}
+   <li><a href="{{ car.id }}">{{ car.name }}</a></li>
+{% endfor %}
+</ul>

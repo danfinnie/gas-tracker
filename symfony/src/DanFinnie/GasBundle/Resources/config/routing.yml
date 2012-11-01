@@ -5,3 +5,7 @@ dan_finnie_gas_homepage:
 dan_finnie_gas_add:
     pattern: /add
     defaults: { _controller: DanFinnieGasBundle:LogRecord:add }
+
+dan_finnie_car_homepage:
+    pattern: /car
+    defaults: { _controller: DanFinnieGasBundle:Car:index }
