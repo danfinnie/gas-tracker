@@ -26,6 +26,12 @@ class LogRecord
     */
    protected $gallonsAdded;
 
+   /**
+    * @ORM\ManyToOne(targetEntity="Car", inversedBy="logRecords")
+    * @ORM\JoinColumn(name="car_id", referencedColumnName="id")
+    */
+   protected $car;
+
     /**
      * Get id
      *
@@ -80,5 +86,28 @@ class LogRecord
     public function getGallonsAdded()
     {
         return $this->gallonsAdded;
+    }
+
+    /**
+     * Set car
+     *
+     * @param DanFinnie\GasBundle\Entity\Car $car
+     * @return LogRecord
+     */
+    public function setCar(\DanFinnie\GasBundle\Entity\Car $car = null)
+    {
+        $this->car = $car;
+    
+        return $this;
+    }
+
+    /**
+     * Get car
+     *
+     * @return DanFinnie\GasBundle\Entity\Car 
+     */
+    public function getCar()
+    {
+        return $this->car;
     }
 }
