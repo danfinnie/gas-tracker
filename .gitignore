@@ -1,0 +1,7 @@
+/logs/
+/symfony/web/bundles/
+/symfony/app/bootstrap*
+/symfony/app/cache/*
+/symfony/app/logs/*
+/symfony/vendor/
+/symfony/app/config/parameters.yml

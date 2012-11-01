@@ -1,0 +1,7 @@
+dan_finnie_gas_homepage:
+    pattern:  /
+    defaults: { _controller: DanFinnieGasBundle:LogRecord:index }
+
+dan_finnie_gas_add:
+    pattern: /add
+    defaults: { _controller: DanFinnieGasBundle:LogRecord:add }

@@ -1,0 +1,5 @@
+<h1>Make a new record!</h1>
+<form action="{{ path('dan_finnie_gas_add') }}" method="post" {{ form_enctype(form) }}>
+   {{ form_widget(form) }}
+   <input type="submit" />
+</form>

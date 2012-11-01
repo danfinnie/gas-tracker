@@ -1,0 +1,13 @@
+<table>
+<thead>
+<tr>
+<td>Mileage</td>
+<td>Gallons Added</td>
+</tr>
+</thead>
+<tbody>
+{% for rec in log_records %}
+   <tr><td>{{ rec.mileage }}</td><td>{{ rec.gallonsAdded }}</td></tr>
+{% endfor %}
+</tbody>
+</table>
