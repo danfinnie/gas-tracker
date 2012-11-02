@@ -1,1 +1,7 @@
-{{ dump(car) }}
+<h1>Car Details</h1>
+<h2>{{ car.name }}</h2>
+<p>{{ car.mileage }} miles</p>
+<div class="mpgBox" style="background-color: {{ car.mpgColor }};">
+   <span class="numeric">{{ car.mpg | number_format(1) }}</span>
+   <span class="label">MPG</span>
+</div>

@@ -30,7 +30,18 @@ class CarController extends Controller
             'car' => array(
                 'name' => $car->getName(),
                 'mpg' => $car->getMpg(),
+                'mileage' => $car->getMileage(),
+                'mpgColor' => $this->mpgColor($car->getMpg()),
             ),
         ));
+    }
+
+    private function mpgColor($mpg)
+    {
+        if ($mpg > 32)
+            return "green";
+        elseif ($mpg > 20)
+            return "yellow";
+        return "red";
     }
 }
