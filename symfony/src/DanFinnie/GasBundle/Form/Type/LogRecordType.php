@@ -11,11 +11,14 @@ class LogRecordType extends AbstractType
     {
         $builder->add('mileage', 'text');
         $builder->add('gallonsAdded', 'text');
-        $builder->add('car', 'entity', array(
-          'class' => 'DanFinnieGasBundle:Car',
-          'property' => 'name',
-          'multiple' => false,
-        ));
+
+        //if (!isset($options['hideCar']) || !$options['hideCar']) {
+           $builder->add('car', 'entity', array(
+             'class' => 'DanFinnieGasBundle:Car',
+             'property' => 'name',
+             'multiple' => false,
+           ));
+        //}
     }
 
     public function getName()

@@ -15,3 +15,9 @@ dan_finnie_car_details:
     defaults: { _controller: DanFinnieGasBundle:Car:details }
     requirements:
         id: \d+
+
+dan_finnie_car_add_log_record:
+    pattern: /car/{id}/addLogRecord
+    defaults: { _controller: DanFinnieGasBundle:Car:addLogRecord }
+    requirements:
+        id: \d+

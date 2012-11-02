@@ -5,6 +5,9 @@ namespace DanFinnie\GasBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+use DanFinnie\GasBundle\Entity\LogRecord;
+use DanFinnie\GasBundle\Form\Type\LogRecordType;
+
 class CarController extends Controller
 {
     public function indexAction()
@@ -34,6 +37,33 @@ class CarController extends Controller
                 'mpgColor' => $this->mpgColor($car->getMpg()),
             ),
         ));
+    }
+
+    public function addLogRecordAction(Request $req, $id)
+    {
+        $carRepo = $this->getDoctrine()->getRepository('DanFinnieGasBundle:Car');
+        $car = $carRepo->findOneByIdWithAnnotations($id);
+
+        $logRecord = new LogRecord();
+        $logRecord->setCar($car);
+        $logRecord->setMileage($car->getMileage());
+        $logRecord->setGallonsAdded(10);
+
+        $form = $this->createForm(new LogRecordType(), $logRecord/*, array("hideCar" => true)*/);
+
+        if ($req->isMethod('POST')) {
+            $form->bind($req);
+
+            if ($form->isValid()) {
+               $manager = $this->getDoctrine()->getManager();
+               $manager->persist($form->getData());
+               $manager->flush();
+
+               return $this->redirect($this->generateUrl('dan_finnie_car_details', array("id" => $car->getId())));
+            }
+        } else {
+           return $this->render('DanFinnieGasBundle:LogRecord:add.html.twig', array('form' => $form->createView()));
+        }
     }
 
     private function mpgColor($mpg)
