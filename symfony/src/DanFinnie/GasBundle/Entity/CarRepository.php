@@ -25,7 +25,10 @@ class CarRepository extends EntityRepository
    }
 
    private function calcMpg($startMiles, $endMiles, $gallonsTotal, $gallonsLastFillUp) {
-      return ($endMiles - $startMiles) / ($gallonsTotal - $gallonsLastFillUp);
+      if ($gallonsTotal - $gallonsLastFillUp == 0)
+          return 0;
+      else
+          return ($endMiles - $startMiles) / ($gallonsTotal - $gallonsLastFillUp);
    }
 
    private function getIndividualLogRecord(Car $car, $logRecordMileage)

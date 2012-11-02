@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 use DanFinnie\GasBundle\Entity\LogRecord;
-use DanFinnie\GasBundle\Form\Type\LogRecordType;
+use DanFinnie\GasBundle\Form\Type\LogRecordNoCarType;
 
 class CarController extends Controller
 {
@@ -49,7 +49,7 @@ class CarController extends Controller
         $logRecord->setMileage($car->getMileage());
         $logRecord->setGallonsAdded(10);
 
-        $form = $this->createForm(new LogRecordType(), $logRecord/*, array("hideCar" => true)*/);
+        $form = $this->createForm(new LogRecordNoCarType(), $logRecord);
 
         if ($req->isMethod('POST')) {
             $form->bind($req);
