@@ -24,7 +24,7 @@ class CarController extends Controller
     public function detailsAction($id)
     {
         $carRepo = $this->getDoctrine()->getRepository('DanFinnieGasBundle:Car');
-        $car = $carRepo->findOneById($id);
+        $car = $carRepo->findOneByIdWithAnnotations($id);
 
         return $this->render('DanFinnieGasBundle:Car:details.html.twig', array(
             'car' => array(

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * DanFinnie\GasBundle\Entity\Car
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="DanFinnie\GasBundle\Entity\CarRepository")
  */
 class Car
 {
@@ -33,6 +33,10 @@ class Car
      * @ORM\OneToMany(targetEntity="LogRecord", mappedBy="car")
      */
     private $logRecords;
+
+    // Optional calculated fields.
+    private $mpg;
+    private $mileage;
 
 
     /**
@@ -108,20 +112,23 @@ class Car
 
     public function getMpg()
     {
-        $milesDriven = 0;
-        $gallonsAdded = 0;
+        return $this->mpg;
+    }
 
-        for($i = 0; $i < count($this->logRecords)-1; $i++) {
-            $earlyRecord = $this->logRecords[$i];
-            $laterRecord = $this->logRecords[$i+1];
+    public function setMpg($mpg)
+    {
+        $this->mpg = $mpg;
+        return $this;
+    }
 
-            $milesDriven += $laterRecord->getMileage() - $earlyRecord->getMileage();
-            $gallonsAdded += $earlyRecord->getGallonsAdded();
-        }
+    public function getMileage()
+    {
+        return $this->mileage;
+    }
 
-        if ($gallonsAdded == 0)
-            return 0;
-        else
-            return $milesDriven * 1.0 / $gallonsAdded;
+    public function setMileage($mileage)
+    {
+        $this->mileage = $mileage;
+        return $this;
     }
 }
