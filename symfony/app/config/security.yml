@@ -9,8 +9,7 @@ security:
         secured_area:
             pattern: ^/
             anonymous: ~
-            http_basic:
-                realm: "Secured Area"
+            form_login: ~
     access_control:
         - { path: ^/car, roles: ROLE_USER }
     providers:
