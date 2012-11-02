@@ -3,8 +3,10 @@
 namespace DanFinnie\GasBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use DanFinnie\GasBundle\Entity\LogRecord;
 use Symfony\Component\HttpFoundation\Request;
+
+use DanFinnie\GasBundle\Form\Type\LogRecordType;
+use DanFinnie\GasBundle\Entity\LogRecord;
 
 class LogRecordController extends Controller
 {
@@ -30,15 +32,7 @@ class LogRecordController extends Controller
         $logRecord->setMileage($this->getExpectedMileage());
         $logRecord->setGallonsAdded($this->getExpectedGallonsAdded());
 
-        $form = $this->createFormBuilder($logRecord)
-            ->add('mileage', 'text')
-            ->add('gallonsAdded', 'text')
-            ->add('car', 'entity', array(
-                'class' => 'DanFinnieGasBundle:Car',
-                'property' => 'name',
-                'multiple' => false,
-            ))
-            ->getForm();
+        $form = $this->createForm(new LogRecordType(), $logRecord);
 
         if ($req->isMethod('POST')) {
             $form->bind($req);
