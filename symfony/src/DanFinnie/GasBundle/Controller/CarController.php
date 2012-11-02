@@ -62,7 +62,12 @@ class CarController extends Controller
                return $this->redirect($this->generateUrl('dan_finnie_car_details', array("id" => $car->getId())));
             }
         } else {
-           return $this->render('DanFinnieGasBundle:LogRecord:add.html.twig', array('form' => $form->createView()));
+           return $this->render('DanFinnieGasBundle:Car:addLogRecord.html.twig', array(
+               'form' => $form->createView(),
+               'car' => array(
+                   'id' => $id,
+               ),
+           ));
         }
     }
 

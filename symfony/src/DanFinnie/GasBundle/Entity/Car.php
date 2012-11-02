@@ -50,6 +50,19 @@ class Car
     }
 
     /**
+     * Set id
+     *
+     * @param string $id
+     * @return Car
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    
+        return $this;
+    }
+
+    /**
      * Set name
      *
      * @param string $name
